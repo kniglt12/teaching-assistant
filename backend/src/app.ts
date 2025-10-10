@@ -46,14 +46,14 @@ class App {
             'http://localhost:5173',
             'https://kniglt12.github.io',
             process.env.FRONTEND_URL
-          ].filter(Boolean);
+          ].filter((url): url is string => Boolean(url));
 
           // 允许所有 localhost 端口访问（开发环境）
           if (!origin || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
             callback(null, true);
           }
           // 检查是否在允许列表中
-          else if (allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+          else if (allowedOrigins.some((allowed) => origin.startsWith(allowed))) {
             callback(null, true);
           }
           else {
@@ -86,14 +86,14 @@ class App {
             'http://localhost:5173',
             'https://kniglt12.github.io',
             process.env.FRONTEND_URL
-          ].filter(Boolean);
+          ].filter((url): url is string => Boolean(url));
 
           // 允许所有 localhost 端口访问（开发环境）
           if (!origin || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
             callback(null, true);
           }
           // 检查是否在允许列表中
-          else if (allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+          else if (allowedOrigins.some((allowed) => origin.startsWith(allowed))) {
             callback(null, true);
           }
           else {
