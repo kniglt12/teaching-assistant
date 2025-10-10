@@ -1,0 +1,5 @@
+.audio-visualizer {
+  display: block;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, rgba(24, 144, 255, 0.05), transparent);
+}

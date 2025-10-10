@@ -1,0 +1,78 @@
+.transcript-viewer {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.transcript-timeline {
+  margin-top: 24px;
+}
+
+.transcript-item {
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.transcript-header {
+  margin-bottom: 12px;
+}
+
+.transcript-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #262626;
+  margin-bottom: 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.transcript-keywords {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.confidence {
+  color: #8c8c8c;
+  font-size: 12px;
+}
+
+/* 时间线样式优化 */
+.transcript-timeline .ant-timeline-item-label {
+  width: 100px !important;
+  text-align: right;
+  font-weight: 500;
+  color: #595959;
+}
+
+.transcript-timeline .ant-timeline-item-content {
+  margin-left: 120px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .transcript-timeline .ant-timeline-item-label {
+    width: 80px !important;
+  }
+
+  .transcript-timeline .ant-timeline-item-content {
+    margin-left: 100px;
+  }
+
+  .transcript-text {
+    font-size: 14px;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .page-header button,
+  .card-container button {
+    display: none;
+  }
+
+  .transcript-item {
+    page-break-inside: avoid;
+  }
+}
