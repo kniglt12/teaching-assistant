@@ -40,11 +40,24 @@ class App {
     this.io = new Server(this.server, {
       cors: {
         origin: (origin, callback) => {
+          // 允许的源列表
+          const allowedOrigins = [
+            'http://localhost:3000',
+            'http://localhost:5173',
+            'https://kniglt12.github.io',
+            process.env.FRONTEND_URL
+          ].filter(Boolean);
+
           // 允许所有 localhost 端口访问（开发环境）
           if (!origin || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
             callback(null, true);
-          } else {
-            callback(null, process.env.FRONTEND_URL || 'http://localhost:3000');
+          }
+          // 检查是否在允许列表中
+          else if (allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+            callback(null, true);
+          }
+          else {
+            callback(new Error('Not allowed by CORS'));
           }
         },
         methods: ['GET', 'POST'],
@@ -63,15 +76,28 @@ class App {
     // 安全中间件
     this.app.use(helmet());
 
-    // CORS配置 - 开发环境允许所有本地端口
+    // CORS配置
     this.app.use(
       cors({
         origin: (origin, callback) => {
+          // 允许的源列表
+          const allowedOrigins = [
+            'http://localhost:3000',
+            'http://localhost:5173',
+            'https://kniglt12.github.io',
+            process.env.FRONTEND_URL
+          ].filter(Boolean);
+
           // 允许所有 localhost 端口访问（开发环境）
           if (!origin || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
             callback(null, true);
-          } else {
-            callback(null, process.env.FRONTEND_URL || 'http://localhost:3000');
+          }
+          // 检查是否在允许列表中
+          else if (allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+            callback(null, true);
+          }
+          else {
+            callback(new Error('Not allowed by CORS'));
           }
         },
         credentials: true,
