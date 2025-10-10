@@ -40,7 +40,7 @@ jobs:
       - name: Build
         env:
           VITE_BASE_PATH: /teaching-assistant/
-          VITE_API_URL: ${{ secrets.API_URL || 'https://your-backend-url.com' }}
+          VITE_API_URL: https://teaching-assistant-production-189c.up.railway.app/api
         run: |
           cd frontend
           npm run build
