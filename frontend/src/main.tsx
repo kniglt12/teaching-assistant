@@ -27,9 +27,12 @@ const theme = {
   },
 };
 
+// 获取 base path 用于路由
+const basename = (import.meta as any).env.VITE_BASE_PATH || '/';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <QueryClientProvider client={queryClient}>
         <ConfigProvider locale={zhCN} theme={theme}>
           <App />

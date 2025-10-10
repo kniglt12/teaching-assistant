@@ -32,7 +32,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:github": "cross-env VITE_BASE_PATH=/ VITE_API_URL=https://teaching-assistant-production-189c.up.railway.app/api tsc && vite build",
+    "build:github": "vite build --mode github",
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx",
     "predeploy": "npm run build:github",
