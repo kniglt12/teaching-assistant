@@ -282,9 +282,9 @@ export class AudioRecorder {
  * 检查浏览器是否支持音频录制
  */
 export function isAudioRecordingSupported(): boolean {
-  return !!(
+  return Boolean(
     navigator.mediaDevices &&
-    navigator.mediaDevices.getUserMedia &&
+    typeof navigator.mediaDevices.getUserMedia === 'function' &&
     window.MediaRecorder
   );
 }

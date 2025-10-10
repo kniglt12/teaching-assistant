@@ -21,7 +21,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   // 获取统计数据
-  const { data: stats } = useQuery('dashboardStats', async () => {
+  const { data: _stats } = useQuery('dashboardStats', async () => {
     const response = await request.get('/dashboard/stats');
     return response.data;
   });
@@ -97,8 +97,10 @@ const Dashboard = () => {
   // 获取状态标签
   const getStatusTag = (status: SessionStatus) => {
     switch (status) {
-      case SessionStatus.IN_PROGRESS:
+      case SessionStatus.RECORDING:
         return <Tag color="processing">录制中</Tag>;
+      case SessionStatus.PROCESSING:
+        return <Tag color="processing">处理中</Tag>;
       case SessionStatus.COMPLETED:
         return <Tag color="success">已完成</Tag>;
       case SessionStatus.FAILED:

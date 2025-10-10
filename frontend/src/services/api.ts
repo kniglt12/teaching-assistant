@@ -3,7 +3,7 @@ import { useAuthStore } from '@/store/authStore';
 import { message } from 'antd';
 
 // API基础URL
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const BASE_URL = (import.meta as any).env.VITE_API_URL || 'http://localhost:5000/api';
 
 // 创建axios实例
 const api = axios.create({
