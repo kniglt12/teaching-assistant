@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>教学辅助赋能平台</title>
+    <script>
+      // GitHub Pages SPA 重定向解决方案
+      // 当用户刷新页面或直接访问子路由时，GitHub Pages 会返回 404
+      // 这个脚本会将路径信息保存到 sessionStorage，然后重定向到 index.html
+      (function() {
+        var pathSegmentsToKeep = 1; // /teaching-assistant/ 是一个段
+
+        var l = window.location;
+        var path = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/';
+        var redirectPath = l.pathname.slice(path.length - 1);
+
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          path + '?p=' + redirectPath +
+          (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~') : '') +
+          l.hash
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <div>加载中...</div>
+  </body>
+</html>
