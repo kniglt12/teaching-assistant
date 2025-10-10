@@ -60,7 +60,8 @@ class App {
             callback(new Error('Not allowed by CORS'));
           }
         },
-        methods: ['GET', 'POST'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
         credentials: true,
       },
     });
@@ -100,6 +101,8 @@ class App {
             callback(new Error('Not allowed by CORS'));
           }
         },
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
         credentials: true,
       })
     );
