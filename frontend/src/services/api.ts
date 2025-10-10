@@ -2,8 +2,23 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useAuthStore } from '@/store/authStore';
 import { message } from 'antd';
 
-// API基础URL
-const BASE_URL = (import.meta as any).env.VITE_API_URL || 'http://localhost:5000/api';
+// API基础URL - 根据环境自动选择
+const getBaseURL = () => {
+  // 如果有环境变量，优先使用环境变量
+  if ((import.meta as any).env.VITE_API_URL) {
+    return (import.meta as any).env.VITE_API_URL;
+  }
+
+  // 如果是本地开发环境（localhost 或 127.0.0.1）
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:5000/api';
+  }
+
+  // 生产环境默认使用 Railway 后端
+  return 'https://teaching-assistant-production-189c.up.railway.app/api';
+};
+
+const BASE_URL = getBaseURL();
 
 // 创建axios实例
 const api = axios.create({
