@@ -1,15 +1,15 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { asyncHandler } from '../../common/middleware/error.middleware';
 // 使用演示模式服务（无需数据库）
 import collectionService from './collection.service.demo';
-import { SessionStatus } from '../../../../shared/types';
+import { SessionStatus } from '../../types/shared';
 
 const router = Router();
 
 // 创建新的课堂会话
 router.post(
   '/sessions',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { courseName, subject, className, grade, objectives } = req.body;
 
     // 从认证中间件获取用户ID（实际项目中应该从token中获取）
@@ -35,7 +35,7 @@ router.post(
 // 获取会话列表
 router.get(
   '/sessions',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const teacherId = (req as any).user?.id || 'teacher_demo';
     const { page = 1, pageSize = 10, status } = req.query;
 
@@ -61,7 +61,7 @@ router.get(
 // 获取单个会话详情（不含文字稿）
 router.get(
   '/sessions/:id',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const sessionWithTranscript = await collectionService.getSessionWithTranscript(id);
@@ -89,7 +89,7 @@ router.get(
 // 获取会话的完整文字稿
 router.get(
   '/sessions/:id/transcript',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const transcript = await collectionService.getSessionTranscript(id);
@@ -108,7 +108,7 @@ router.get(
 // 获取会话详情（含文字稿）
 router.get(
   '/sessions/:id/full',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const sessionWithTranscript = await collectionService.getSessionWithTranscript(id);
@@ -133,7 +133,7 @@ router.get(
 // 停止会话
 router.post(
   '/sessions/:id/stop',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const session = await collectionService.stopSession(id);
@@ -159,7 +159,7 @@ router.post(
 // 完成会话处理
 router.post(
   '/sessions/:id/complete',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     const { audioUrl } = req.body;
 
@@ -186,7 +186,7 @@ router.post(
 // 保存文字稿片段
 router.post(
   '/sessions/:id/transcript',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     const { segments } = req.body;
 
@@ -221,7 +221,7 @@ router.post(
 // 删除会话
 router.delete(
   '/sessions/:id',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const deleted = await collectionService.deleteSession(id);
@@ -246,7 +246,7 @@ router.delete(
 // 生成模拟文字稿（用于演示）
 router.post(
   '/sessions/:id/generate-mock-transcript',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
 
     await collectionService.generateMockTranscript(id);
@@ -261,7 +261,7 @@ router.post(
 // 上传音频数据（预留接口）
 router.post(
   '/sessions/:id/audio',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     // TODO: 实现音频上传和处理逻辑
     // 1. 接收音频文件
     // 2. 保存到存储服务（如 OSS）

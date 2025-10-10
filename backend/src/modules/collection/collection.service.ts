@@ -1,5 +1,5 @@
 import { getCollection } from '../../common/database/mongodb';
-import { ClassSession, ClassSessionWithTranscript, TranscriptSegment, SessionStatus, SpeakerRole } from '../../../../shared/types';
+import { ClassSession, ClassSessionWithTranscript, TranscriptSegment, SessionStatus, SpeakerRole } from '../../types/shared';
 import logger from '../../common/logger';
 
 const SESSIONS_COLLECTION = 'class_sessions';

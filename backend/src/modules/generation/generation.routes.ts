@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { asyncHandler } from '../../common/middleware/error.middleware';
 
 const router = Router();
@@ -6,7 +6,7 @@ const router = Router();
 // 生成PPT
 router.post(
   '/ppt',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { topic, subject, grade, objectives } = req.body;
     // TODO: PPT生成逻辑
     res.json({
@@ -22,7 +22,7 @@ router.post(
 // 生成作业
 router.post(
   '/homework',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { sessionId, subject, grade, knowledgePoints } = req.body;
     // TODO: 作业生成逻辑
     res.json({
@@ -38,7 +38,7 @@ router.post(
 // 获取模板库
 router.get(
   '/templates',
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { type } = req.query;
     // TODO: 查询模板
     res.json({

@@ -3,7 +3,7 @@
  * 使用内存存储，无需数据库连接
  */
 
-import { ClassSession, ClassSessionWithTranscript, TranscriptSegment, SessionStatus, SpeakerRole } from '../../../../shared/types';
+import { ClassSession, ClassSessionWithTranscript, TranscriptSegment, SessionStatus, SpeakerRole } from '../../types/shared';
 import logger from '../../common/logger';
 
 // 内存存储
