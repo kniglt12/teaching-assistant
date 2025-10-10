@@ -20,6 +20,9 @@ const getBaseURL = () => {
 
 const BASE_URL = getBaseURL();
 
+// 在开发环境下打印 API URL 以便调试
+console.log('🌐 API Base URL:', BASE_URL);
+
 // 创建axios实例
 const api = axios.create({
   baseURL: BASE_URL,
