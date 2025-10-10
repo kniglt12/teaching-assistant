@@ -20,7 +20,7 @@ import {
   PlusOutlined,
   ReloadOutlined,
 } from '@ant-design/icons';
-import { ClassSession, SessionStatus } from '../../../../shared/types';
+import { ClassSession, SessionStatus } from '@/types/shared';
 import { request } from '@/services/api';
 import type { ColumnsType } from 'antd/es/table';
 import './SessionHistory.css';

@@ -25,7 +25,7 @@ import {
   DownloadOutlined,
   SearchOutlined,
 } from '@ant-design/icons';
-import { ClassSessionWithTranscript, SpeakerRole, TranscriptSegment } from '../../../../shared/types';
+import { ClassSessionWithTranscript, SpeakerRole, TranscriptSegment } from '@/types/shared';
 import { request } from '@/services/api';
 import './TranscriptViewer.css';
 

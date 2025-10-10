@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Card, Empty, Tag, Space } from 'antd';
 import { SoundOutlined, UserOutlined } from '@ant-design/icons';
-import { TranscriptSegment, SpeakerRole } from '../../../shared/types';
+import { TranscriptSegment, SpeakerRole } from '@/types/shared';
 import './LiveTranscript.css';
 
 interface LiveTranscriptProps {

@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { request } from '@/services/api';
 import ReactECharts from 'echarts-for-react';
-import { ClassSession, SessionStatus } from '../../../../shared/types';
+import { ClassSession, SessionStatus } from '@/types/shared';
 import './Dashboard.css';
 
 const Dashboard = () => {

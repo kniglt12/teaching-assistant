@@ -14,7 +14,7 @@ import { request } from '@/services/api';
 import { AudioRecorder, isAudioRecordingSupported, isSpeechRecognitionSupported, requestMicrophonePermission } from '@/services/audioRecorder';
 import AudioVisualizer from '@/components/AudioVisualizer';
 import LiveTranscript from '@/components/LiveTranscript';
-import { TranscriptSegment, SpeakerRole } from '../../../../shared/types';
+import { TranscriptSegment, SpeakerRole } from '@/types/shared';
 import './ClassRecorder.css';
 
 const { Option } = Select;
