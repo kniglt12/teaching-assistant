@@ -5,7 +5,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #a8b8ff 0%, #b8a8d8 100%);
 }
 
 .login-background {
@@ -66,6 +66,25 @@
   width: 100%;
   max-width: 440px;
   padding: 20px;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  font-size: 16px;
+  z-index: 10;
+}
+
+.back-button:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.login-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 16px;
 }
 
 .login-header {
