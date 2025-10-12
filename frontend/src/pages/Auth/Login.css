@@ -5,7 +5,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #a8b8ff 0%, #b8a8d8 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);
 }
 
 .login-background {
@@ -27,7 +27,7 @@
 .shape-1 {
   width: 500px;
   height: 500px;
-  background: #fff;
+  background: #1890ff;
   top: -10%;
   left: -10%;
   animation-delay: 0s;
@@ -36,7 +36,7 @@
 .shape-2 {
   width: 400px;
   height: 400px;
-  background: #fff;
+  background: #40a9ff;
   bottom: -10%;
   right: -5%;
   animation-delay: -5s;
@@ -45,16 +45,19 @@
 .shape-3 {
   width: 300px;
   height: 300px;
-  background: #fff;
+  background: #69c0ff;
   top: 50%;
   right: 10%;
   animation-delay: -10s;
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-30px) rotate(180deg);
   }
@@ -69,20 +72,20 @@
 }
 
 .back-button {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
-  color: white;
+  color: #1890ff;
   font-size: 16px;
-  z-index: 10;
+  z-index: 100;
 }
 
 .back-button:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: #40a9ff;
 }
 
 .login-logo {
-  width: 120px;
+  width: 180px;
   height: auto;
   margin-bottom: 16px;
 }
@@ -90,20 +93,20 @@
 .login-header {
   text-align: center;
   margin-bottom: 32px;
-  color: #fff;
+  color: #595959;
 }
 
 .login-header h1 {
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #1890ff;
+  text-shadow: 0 2px 4px rgba(24, 144, 255, 0.2);
 }
 
 .login-header p {
   font-size: 14px;
-  opacity: 0.9;
+  color: #8c8c8c;
   margin: 0;
 }
 
@@ -142,8 +145,7 @@
 .login-footer {
   text-align: center;
   margin-top: 24px;
-  color: #fff;
-  opacity: 0.8;
+  color: #8c8c8c;
 }
 
 .login-footer p {

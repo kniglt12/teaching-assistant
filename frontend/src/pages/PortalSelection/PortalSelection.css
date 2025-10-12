@@ -5,7 +5,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #a8b8ff 0%, #b8a8d8 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);
 }
 
 .portal-background {
@@ -84,6 +84,7 @@
 
 .portal-header {
   margin-bottom: 4vh;
+  margin-top: 10vh;
 }
 
 .portal-logo {
@@ -98,21 +99,21 @@
 .portal-header h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: bold;
-  color: white;
+  color: #1890ff;
   margin: 1.5vh 0 1vh;
-  text-shadow: 0 0.2vh 0.6vh rgba(0, 0, 0, 0.1);
+  text-shadow: 0 0.2vh 0.6vh rgba(24, 144, 255, 0.2);
 }
 
 .portal-subtitle {
   font-size: clamp(1rem, 1.5vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.9);
+  color: #595959;
   margin: 1vh 0;
   font-weight: 500;
 }
 
 .portal-description {
   font-size: clamp(0.875rem, 1.2vw, 1rem);
-  color: rgba(255, 255, 255, 0.8);
+  color: #8c8c8c;
   margin-top: 1vh;
 }
 
@@ -121,7 +122,8 @@
   justify-content: center;
   gap: 3vw;
   flex-wrap: wrap;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  margin-top: 6vh;
 }
 
 .portal-card {
@@ -167,8 +169,8 @@
 }
 
 .portal-footer {
-  margin-top: 4vh;
-  color: rgba(255, 255, 255, 0.8);
+  margin-top: 16vh;
+  color: #8c8c8c;
   font-size: clamp(0.75rem, 1vw, 0.875rem);
 }
 

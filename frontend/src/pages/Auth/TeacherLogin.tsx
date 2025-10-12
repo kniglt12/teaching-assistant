@@ -70,7 +70,6 @@ const TeacherLogin = () => {
             className="login-logo"
           />
           <h1>教师端</h1>
-          <p>基于"可用、可测、可复盘"的智能教学助手</p>
         </div>
 
         <Card className="login-card" bordered={false}>
@@ -120,11 +119,6 @@ const TeacherLogin = () => {
                       </Button>
                     </Form.Item>
 
-                    <div style={{ textAlign: 'center', color: '#8c8c8c' }}>
-                      <small>
-                        测试账号: teacher / password123
-                      </small>
-                    </div>
                   </Form>
                 ),
               },
@@ -222,9 +216,6 @@ const TeacherLogin = () => {
           />
         </Card>
 
-        <div className="login-footer">
-          <p>© 2025 智同道合 · 让教学更智能</p>
-        </div>
       </div>
     </div>
   );

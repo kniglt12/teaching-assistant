@@ -65,7 +65,7 @@ function App() {
         }
       >
         {/* 首页 - 跳转到仪表盘 */}
-        <Route index element={<Navigate to="/dashboard" replace />} />
+        <Route index element={<Navigate to="/teacher/dashboard" replace />} />
 
         {/* 仪表盘 */}
         <Route path="dashboard" element={<Dashboard />} />

@@ -49,7 +49,6 @@ const DistrictLogin = () => {
             className="login-logo"
           />
           <h1>区域端</h1>
-          <p>基于"可用、可测、可复盘"的智能教学助手</p>
         </div>
 
         <Card className="login-card" bordered={false}>
@@ -98,9 +97,6 @@ const DistrictLogin = () => {
           </Form>
         </Card>
 
-        <div className="login-footer">
-          <p>© 2025 智同道合 · 让教学更智能</p>
-        </div>
       </div>
     </div>
   );
