@@ -197,7 +197,7 @@ const MainLayout = () => {
       </Sider>
 
       {/* 主内容区 */}
-      <Layout style={{ marginLeft: collapsed ? 80 : 240, transition: 'all 0.2s' }}>
+      <Layout style={{ marginLeft: collapsed ? 80 : 240, transition: 'all 0.2s', background: 'transparent' }}>
         {/* 顶部导航栏 */}
         <Header
           style={{

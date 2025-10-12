@@ -12,11 +12,15 @@ const PortalSelection = () => {
       icon: (
         <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="60" cy="60" r="55" fill="#1890ff" opacity="0.1"/>
+          {/* 头部 */}
           <circle cx="60" cy="45" r="15" fill="#1890ff"/>
+          {/* 身体 */}
           <path d="M35 85 C35 70, 45 65, 60 65 C75 65, 85 70, 85 85 L85 95 L35 95 Z" fill="#1890ff"/>
+          {/* 帽子 */}
           <rect x="50" y="30" width="20" height="3" fill="#1890ff"/>
-          <circle cx="45" cy="50" r="2" fill="#40a9ff"/>
-          <circle cx="75" cy="50" r="2" fill="#40a9ff"/>
+          {/* 眼睛 */}
+          <circle cx="52" cy="45" r="2" fill="white"/>
+          <circle cx="68" cy="45" r="2" fill="white"/>
         </svg>
       ),
       path: '/teacher/login'
@@ -27,11 +31,18 @@ const PortalSelection = () => {
       icon: (
         <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="60" cy="60" r="55" fill="#1890ff" opacity="0.1"/>
-          <path d="M60 25 L85 40 L85 75 L60 90 L35 75 L35 40 Z" fill="#1890ff"/>
-          <rect x="55" y="55" width="10" height="15" fill="white"/>
-          <rect x="47" y="45" width="6" height="6" fill="white"/>
-          <rect x="67" y="45" width="6" height="6" fill="white"/>
-          <path d="M40 40 L60 30 L80 40" stroke="#40a9ff" strokeWidth="2" fill="none"/>
+          {/* 房子屋顶 */}
+          <path d="M60 30 L85 50 L35 50 Z" fill="#1890ff"/>
+          {/* 房子主体 */}
+          <rect x="35" y="50" width="50" height="35" fill="#1890ff"/>
+          {/* 门 */}
+          <rect x="50" y="60" width="20" height="25" fill="white" rx="2"/>
+          {/* 门把手 */}
+          <circle cx="64" cy="73" r="1.5" fill="#1890ff"/>
+          {/* 地板 */}
+          <rect x="30" y="85" width="60" height="8" fill="#40a9ff"/>
+          {/* 烟囱 */}
+          <rect x="70" y="35" width="6" height="15" fill="#40a9ff"/>
         </svg>
       ),
       path: '/school/login'

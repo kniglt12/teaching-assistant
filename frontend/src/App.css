@@ -22,7 +22,7 @@ body {
 
 .page-container {
   padding: 24px;
-  background: #f0f2f5;
+  background: transparent;
   min-height: calc(100vh - 64px);
 }
 
