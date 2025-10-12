@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Card, message } from 'antd';
 import { UserOutlined, LockOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { getAssetPath } from '@/utils/assets';
 import './Login.css';
 
 const SchoolLogin = () => {
@@ -44,7 +45,7 @@ const SchoolLogin = () => {
 
         <div className="login-header">
           <img
-            src="/picture/logo.png"
+            src={getAssetPath('logo.png')}
             alt="智同道合"
             className="login-logo"
           />

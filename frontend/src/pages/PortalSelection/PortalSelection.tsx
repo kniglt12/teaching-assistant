@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Card } from 'antd';
+import { getAssetPath } from '@/utils/assets';
 import './PortalSelection.css';
 
 const PortalSelection = () => {
@@ -85,7 +86,7 @@ const PortalSelection = () => {
       <div className="portal-content">
         <div className="portal-header">
           <img
-            src="/picture/logo.png"
+            src={getAssetPath('logo.png')}
             alt="智同道合"
             className="portal-logo"
           />

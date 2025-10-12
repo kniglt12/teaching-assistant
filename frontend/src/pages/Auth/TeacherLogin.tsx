@@ -4,6 +4,7 @@ import { Form, Input, Button, Card, message, Tabs } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, HomeOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { useAuthStore } from '@/store/authStore';
 import { request } from '@/services/api';
+import { getAssetPath } from '@/utils/assets';
 import './Login.css';
 
 const TeacherLogin = () => {
@@ -65,7 +66,7 @@ const TeacherLogin = () => {
 
         <div className="login-header">
           <img
-            src="/picture/logo.png"
+            src={getAssetPath('logo.png')}
             alt="智同道合"
             className="login-logo"
           />
