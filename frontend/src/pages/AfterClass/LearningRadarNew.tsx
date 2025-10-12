@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Card, Row, Col, Select, Table, Typography, Space, Tag, Tabs, Progress } from 'antd';
-import type { ColumnsType, TabsProps } from 'antd/es/table';
+import type { ColumnsType } from 'antd/es/table';
+import type { TabsProps } from 'antd';
 import ReactECharts from 'echarts-for-react';
 import './AfterClass.css';
 

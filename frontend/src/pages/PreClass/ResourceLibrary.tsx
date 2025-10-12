@@ -99,8 +99,8 @@ const ResourceLibrary = () => {
       dataIndex: 'name',
       key: 'name',
       filteredValue: [searchText],
-      onFilter: (value: string | number | boolean, record: Resource) =>
-        record.name.toLowerCase().includes((value as string).toLowerCase()),
+      onFilter: (value: boolean | React.Key, record: Resource) =>
+        record.name.toLowerCase().includes(String(value).toLowerCase()),
     },
     {
       title: '类型',
@@ -112,7 +112,7 @@ const ResourceLibrary = () => {
         { text: '案例库', value: '案例库' },
         { text: '教学素材', value: '教学素材' },
       ],
-      onFilter: (value: string | number | boolean, record: Resource) => record.type === value,
+      onFilter: (value: boolean | React.Key, record: Resource) => record.type === value,
     },
     {
       title: '标签',

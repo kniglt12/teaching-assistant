@@ -133,9 +133,9 @@ const ClassroomHistory = () => {
       dataIndex: 'courseName',
       key: 'courseName',
       filteredValue: [searchText],
-      onFilter: (value: string | number | boolean, record: ClassRecord) =>
-        record.courseName.toLowerCase().includes((value as string).toLowerCase()) ||
-        record.className.toLowerCase().includes((value as string).toLowerCase()),
+      onFilter: (value: boolean | React.Key, record: ClassRecord) =>
+        record.courseName.toLowerCase().includes(String(value).toLowerCase()) ||
+        record.className.toLowerCase().includes(String(value).toLowerCase()),
       render: (text: string) => <span style={{ fontWeight: 500 }}>{text}</span>,
     },
     {
@@ -152,7 +152,7 @@ const ClassroomHistory = () => {
         { text: '八年级', value: '八年级' },
         { text: '九年级', value: '九年级' },
       ],
-      onFilter: (value: string | number | boolean, record: ClassRecord) => record.grade === value,
+      onFilter: (value: boolean | React.Key, record: ClassRecord) => record.grade === value,
       render: (text: string) => <Tag color="blue">{text}</Tag>,
     },
     {
@@ -201,7 +201,7 @@ const ClassroomHistory = () => {
         { text: '处理中', value: 'processing' },
         { text: '失败', value: 'failed' },
       ],
-      onFilter: (value: string | number | boolean, record: ClassRecord) => record.status === value,
+      onFilter: (value: boolean | React.Key, record: ClassRecord) => record.status === value,
     },
     {
       title: '操作',

@@ -1,7 +1,8 @@
 import { Card, Row, Col, Statistic, Progress, Table, Tag, Typography, Space, Button, Tabs, Descriptions, Timeline } from 'antd';
-import type { ColumnsType, TabsProps } from 'antd/es/table';
+import type { ColumnsType } from 'antd/es/table';
+import type { TabsProps } from 'antd';
 import { ArrowLeftOutlined, TeamOutlined, CommentOutlined, TrophyOutlined, ClockCircleOutlined, DownloadOutlined } from '@ant-design/icons';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ReactECharts from 'echarts-for-react';
 import './InClass.css';
 
