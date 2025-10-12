@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Card, Input, Tabs, Table, Tag, Space, Button, Upload, message, Modal } from 'antd';
-import type { TabsProps, ColumnsType } from 'antd';
+import type { TabsProps } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
 import { SearchOutlined, UploadOutlined, StarOutlined, StarFilled, ShareAltOutlined, DownloadOutlined, EyeOutlined } from '@ant-design/icons';
 import './PreClass.css';
 
@@ -98,7 +99,7 @@ const ResourceLibrary = () => {
       dataIndex: 'name',
       key: 'name',
       filteredValue: [searchText],
-      onFilter: (value, record) =>
+      onFilter: (value: string | number | boolean, record: Resource) =>
         record.name.toLowerCase().includes((value as string).toLowerCase()),
     },
     {
@@ -111,7 +112,7 @@ const ResourceLibrary = () => {
         { text: '案例库', value: '案例库' },
         { text: '教学素材', value: '教学素材' },
       ],
-      onFilter: (value, record) => record.type === value,
+      onFilter: (value: string | number | boolean, record: Resource) => record.type === value,
     },
     {
       title: '标签',
@@ -136,19 +137,19 @@ const ResourceLibrary = () => {
       title: '创建时间',
       dataIndex: 'createTime',
       key: 'createTime',
-      sorter: (a, b) => new Date(a.createTime).getTime() - new Date(b.createTime).getTime(),
+      sorter: (a: Resource, b: Resource) => new Date(a.createTime).getTime() - new Date(b.createTime).getTime(),
     },
     {
       title: '使用次数',
       dataIndex: 'useCount',
       key: 'useCount',
-      sorter: (a, b) => a.useCount - b.useCount,
+      sorter: (a: Resource, b: Resource) => a.useCount - b.useCount,
       render: (count: number) => <Tag color="green">{count}</Tag>,
     },
     {
       title: '操作',
       key: 'action',
-      render: (_, record) => (
+      render: (_: unknown, record: Resource) => (
         <Space size="small">
           <Button
             type="link"

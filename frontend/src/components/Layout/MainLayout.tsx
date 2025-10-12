@@ -10,8 +10,6 @@ import {
   FileAddOutlined,
   FormOutlined,
   RadarChartOutlined,
-  AppstoreOutlined,
-  SafetyOutlined,
   FolderOpenOutlined,
   UserOutlined,
   LogoutOutlined,

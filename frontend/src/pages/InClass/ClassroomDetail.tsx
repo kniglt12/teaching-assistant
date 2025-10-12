@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { Card, Row, Col, Statistic, Progress, Table, Tag, Typography, Space, Button, Tabs, Descriptions, Timeline } from 'antd';
-import type { ColumnsType, TabsProps } from 'antd';
+import type { ColumnsType, TabsProps } from 'antd/es/table';
 import { ArrowLeftOutlined, TeamOutlined, CommentOutlined, TrophyOutlined, ClockCircleOutlined, DownloadOutlined } from '@ant-design/icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactECharts from 'echarts-for-react';
@@ -27,8 +26,6 @@ interface TranscriptItem {
 
 const ClassroomDetail = () => {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
-  const [selectedStudent, setSelectedStudent] = useState<string | null>(null);
 
   // 模拟课堂详情数据
   const classInfo = {
@@ -91,7 +88,7 @@ const ClassroomDetail = () => {
       title: '发言次数',
       dataIndex: 'speakCount',
       key: 'speakCount',
-      sorter: (a, b) => a.speakCount - b.speakCount,
+      sorter: (a: StudentParticipation, b: StudentParticipation) => a.speakCount - b.speakCount,
     },
     {
       title: '发言时长',
@@ -241,10 +238,6 @@ const ClassroomDetail = () => {
             columns={columns}
             dataSource={studentData}
             pagination={{ pageSize: 10 }}
-            onRow={(record) => ({
-              onClick: () => setSelectedStudent(record.key),
-              style: { cursor: 'pointer' },
-            })}
           />
         </Card>
       ),

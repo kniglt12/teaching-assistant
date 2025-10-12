@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Card, Row, Col, Select, Table, Typography, Space, Tag, Tabs, Progress } from 'antd';
-import type { ColumnsType, TabsProps } from 'antd';
+import type { ColumnsType, TabsProps } from 'antd/es/table';
 import ReactECharts from 'echarts-for-react';
 import './AfterClass.css';
 
@@ -197,7 +197,7 @@ const LearningRadarNew = () => {
           <Progress percent={value} size="small" strokeColor="#1890ff" />
         </div>
       ),
-      sorter: (a, b) => a.cognitive - b.cognitive,
+      sorter: (a: StudentRadar, b: StudentRadar) => a.cognitive - b.cognitive,
     },
     {
       title: '思维表达力',
@@ -208,7 +208,7 @@ const LearningRadarNew = () => {
           <Progress percent={value} size="small" strokeColor="#52c41a" />
         </div>
       ),
-      sorter: (a, b) => a.expression - b.expression,
+      sorter: (a: StudentRadar, b: StudentRadar) => a.expression - b.expression,
     },
     {
       title: '应用迁移力',
@@ -219,7 +219,7 @@ const LearningRadarNew = () => {
           <Progress percent={value} size="small" strokeColor="#faad14" />
         </div>
       ),
-      sorter: (a, b) => a.application - b.application,
+      sorter: (a: StudentRadar, b: StudentRadar) => a.application - b.application,
     },
     {
       title: '学习投入度',
@@ -230,14 +230,14 @@ const LearningRadarNew = () => {
           <Progress percent={value} size="small" strokeColor="#f5222d" />
         </div>
       ),
-      sorter: (a, b) => a.engagement - b.engagement,
+      sorter: (a: StudentRadar, b: StudentRadar) => a.engagement - b.engagement,
     },
     {
       title: '综合评分',
       dataIndex: 'average',
       key: 'average',
       render: (value: number) => <Text strong>{value}</Text>,
-      sorter: (a, b) => a.average - b.average,
+      sorter: (a: StudentRadar, b: StudentRadar) => a.average - b.average,
     },
     {
       title: '趋势',

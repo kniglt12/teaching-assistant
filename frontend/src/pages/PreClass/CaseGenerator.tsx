@@ -20,7 +20,7 @@ const CaseGenerator = () => {
   const [loading, setLoading] = useState(false);
   const [cases, setCases] = useState<GeneratedCase[]>([]);
 
-  const handleGenerate = async (values: any) => {
+  const handleGenerate = async () => {
     setLoading(true);
 
     // 模拟AI生成

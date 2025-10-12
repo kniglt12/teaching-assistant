@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Card, Row, Col, Statistic, Progress, Table, Tag, Typography, Space, Button, Tabs, Form, Input, Select, Alert, Steps, message } from 'antd';
-import type { ColumnsType, TabsProps } from 'antd';
+import { Card, Row, Col, Statistic, Progress, Table, Tag, Typography, Space, Button, Form, Input, Select, Alert, Steps, message } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
 import {
   TeamOutlined,
   CommentOutlined,
@@ -23,7 +23,7 @@ import { TranscriptSegment, SpeakerRole } from '@/types/shared';
 import { request } from '@/services/api';
 import './InClass.css';
 
-const { Title, Paragraph, Text } = Typography;
+const { Title, Paragraph } = Typography;
 const { Option } = Select;
 
 interface StudentParticipation {
@@ -249,14 +249,14 @@ const ClassroomAnalysis = () => {
       title: '发言次数',
       dataIndex: 'speakCount',
       key: 'speakCount',
-      sorter: (a, b) => a.speakCount - b.speakCount,
+      sorter: (a: StudentParticipation, b: StudentParticipation) => a.speakCount - b.speakCount,
     },
     {
       title: '发言时长',
       dataIndex: 'speakTime',
       key: 'speakTime',
       render: (time: number) => `${Math.floor(time / 60)}分${time % 60}秒`,
-      sorter: (a, b) => a.speakTime - b.speakTime,
+      sorter: (a: StudentParticipation, b: StudentParticipation) => a.speakTime - b.speakTime,
     },
     {
       title: '思维层级',
@@ -272,7 +272,7 @@ const ClassroomAnalysis = () => {
       dataIndex: 'participation',
       key: 'participation',
       render: (value: number) => <Progress percent={value} size="small" />,
-      sorter: (a, b) => a.participation - b.participation,
+      sorter: (a: StudentParticipation, b: StudentParticipation) => a.participation - b.participation,
     },
   ];
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Card, Table, Button, Space, Tag, Input, DatePicker, Select, Row, Col, message } from 'antd';
-import type { ColumnsType } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
 import { SearchOutlined, EyeOutlined, DeleteOutlined, DownloadOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import './InClass.css';
@@ -133,10 +133,10 @@ const ClassroomHistory = () => {
       dataIndex: 'courseName',
       key: 'courseName',
       filteredValue: [searchText],
-      onFilter: (value, record) =>
+      onFilter: (value: string | number | boolean, record: ClassRecord) =>
         record.courseName.toLowerCase().includes((value as string).toLowerCase()) ||
         record.className.toLowerCase().includes((value as string).toLowerCase()),
-      render: (text) => <span style={{ fontWeight: 500 }}>{text}</span>,
+      render: (text: string) => <span style={{ fontWeight: 500 }}>{text}</span>,
     },
     {
       title: '班级',
@@ -152,44 +152,44 @@ const ClassroomHistory = () => {
         { text: '八年级', value: '八年级' },
         { text: '九年级', value: '九年级' },
       ],
-      onFilter: (value, record) => record.grade === value,
-      render: (text) => <Tag color="blue">{text}</Tag>,
+      onFilter: (value: string | number | boolean, record: ClassRecord) => record.grade === value,
+      render: (text: string) => <Tag color="blue">{text}</Tag>,
     },
     {
       title: '记录时间',
       dataIndex: 'date',
       key: 'date',
-      sorter: (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      sorter: (a: ClassRecord, b: ClassRecord) => new Date(a.date).getTime() - new Date(b.date).getTime(),
     },
     {
       title: '时长',
       dataIndex: 'duration',
       key: 'duration',
-      render: (duration) => formatDuration(duration),
-      sorter: (a, b) => a.duration - b.duration,
+      render: (duration: number) => formatDuration(duration),
+      sorter: (a: ClassRecord, b: ClassRecord) => a.duration - b.duration,
     },
     {
       title: '文字稿段数',
       dataIndex: 'transcriptCount',
       key: 'transcriptCount',
-      render: (count) => <Tag>{count}段</Tag>,
-      sorter: (a, b) => a.transcriptCount - b.transcriptCount,
+      render: (count: number) => <Tag>{count}段</Tag>,
+      sorter: (a: ClassRecord, b: ClassRecord) => a.transcriptCount - b.transcriptCount,
     },
     {
       title: '参与学生',
       dataIndex: 'studentCount',
       key: 'studentCount',
-      render: (count) => `${count}人`,
+      render: (count: number) => `${count}人`,
     },
     {
       title: '平均参与度',
       dataIndex: 'avgParticipation',
       key: 'avgParticipation',
-      render: (value) => {
+      render: (value: number) => {
         const color = value >= 80 ? 'green' : value >= 60 ? 'orange' : 'red';
         return <Tag color={color}>{value.toFixed(1)}%</Tag>;
       },
-      sorter: (a, b) => a.avgParticipation - b.avgParticipation,
+      sorter: (a: ClassRecord, b: ClassRecord) => a.avgParticipation - b.avgParticipation,
     },
     {
       title: '状态',
@@ -201,13 +201,13 @@ const ClassroomHistory = () => {
         { text: '处理中', value: 'processing' },
         { text: '失败', value: 'failed' },
       ],
-      onFilter: (value, record) => record.status === value,
+      onFilter: (value: string | number | boolean, record: ClassRecord) => record.status === value,
     },
     {
       title: '操作',
       key: 'action',
       width: 240,
-      render: (_, record) => (
+      render: (_: unknown, record: ClassRecord) => (
         <Space size="small">
           <Button
             type="link"
