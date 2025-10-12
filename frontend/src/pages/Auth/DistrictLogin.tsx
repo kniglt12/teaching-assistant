@@ -8,7 +8,7 @@ const DistrictLogin = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (values: any) => {
+  const handleLogin = async (_values: any) => {
     try {
       setLoading(true);
       // TODO: 实现区域端登录逻辑
