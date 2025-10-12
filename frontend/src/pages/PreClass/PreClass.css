@@ -1,0 +1,123 @@
+/* 课前模块通用样式 */
+.page-container {
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 8px;
+}
+
+.page-description {
+  font-size: 15px;
+  color: #8c8c8c;
+  margin-bottom: 0;
+}
+
+.search-card {
+  margin-bottom: 24px;
+}
+
+/* 课件生成器样式 */
+.courseware-preview {
+  margin-top: 24px;
+}
+
+.courseware-section {
+  margin-bottom: 32px;
+}
+
+.courseware-section h5 {
+  color: #1890ff;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.ppt-structure {
+  padding-left: 24px;
+}
+
+.ppt-structure > li {
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.ppt-structure strong {
+  color: #262626;
+  font-size: 16px;
+}
+
+.ppt-structure ul {
+  margin-top: 8px;
+  padding-left: 24px;
+}
+
+.ppt-structure ul li {
+  color: #595959;
+  margin-bottom: 4px;
+}
+
+.board-notes {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 2;
+  color: #262626;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* 案例生成器样式 */
+.case-card {
+  margin-top: 16px;
+}
+
+.case-content {
+  padding: 16px 0;
+}
+
+.case-section {
+  margin-bottom: 20px;
+}
+
+.case-section h5 {
+  color: #262626;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.case-section ol {
+  padding-left: 24px;
+}
+
+.case-section ol li {
+  color: #595959;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .search-card .ant-row {
+    flex-direction: column;
+  }
+
+  .search-card .ant-col {
+    width: 100% !important;
+    margin-bottom: 12px;
+  }
+}

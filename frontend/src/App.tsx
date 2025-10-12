@@ -15,6 +15,20 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import SchoolDashboard from './pages/School/SchoolDashboard';
 import DistrictDashboard from './pages/District/DistrictDashboard';
 
+// 课前页面
+import ResourceMatcher from './pages/PreClass/ResourceMatcher';
+import CoursewareGenerator from './pages/PreClass/CoursewareGenerator';
+import CaseGenerator from './pages/PreClass/CaseGenerator';
+import PreClassResourceLibrary from './pages/PreClass/ResourceLibrary';
+
+// 课中页面
+import ClassroomAnalysis from './pages/InClass/ClassroomAnalysis';
+import ClassroomHistory from './pages/InClass/ClassroomHistory';
+import ClassroomDetail from './pages/InClass/ClassroomDetail';
+
+// 课后页面
+import LearningRadarNew from './pages/AfterClass/LearningRadarNew';
+
 // M1 阶段页面
 import ClassRecorder from './pages/M1/ClassRecorder';
 import MetricsLibrary from './pages/M1/MetricsLibrary';
@@ -69,6 +83,26 @@ function App() {
 
         {/* 仪表盘 */}
         <Route path="dashboard" element={<Dashboard />} />
+
+        {/* 课前模块 */}
+        <Route path="pre-class">
+          <Route path="resource-matcher" element={<ResourceMatcher />} />
+          <Route path="courseware-generator" element={<CoursewareGenerator />} />
+          <Route path="case-generator" element={<CaseGenerator />} />
+          <Route path="resource-library" element={<PreClassResourceLibrary />} />
+        </Route>
+
+        {/* 课中模块 */}
+        <Route path="in-class">
+          <Route path="classroom-analysis" element={<ClassroomAnalysis />} />
+          <Route path="classroom-history" element={<ClassroomHistory />} />
+          <Route path="classroom-detail/:id" element={<ClassroomDetail />} />
+        </Route>
+
+        {/* 课后模块 */}
+        <Route path="after-class">
+          <Route path="learning-radar" element={<LearningRadarNew />} />
+        </Route>
 
         {/* M1 阶段功能 */}
         <Route path="m1">

@@ -17,6 +17,8 @@ import {
   LogoutOutlined,
   SettingOutlined,
   BellOutlined,
+  BookOutlined,
+  BulbOutlined,
 } from '@ant-design/icons';
 import { useAuthStore } from '@/store/authStore';
 
@@ -36,66 +38,118 @@ const MainLayout = () => {
       label: '工作台',
     },
     {
-      key: 'm1',
-      icon: <AudioOutlined />,
-      label: 'M1 - 数据闭环',
+      key: 'pre-class',
+      icon: <BookOutlined />,
+      label: '课前',
       children: [
         {
-          key: '/teacher/m1/recorder',
-          icon: <AudioOutlined />,
-          label: '课堂采集器',
-        },
-        {
-          key: '/teacher/m1/metrics',
-          icon: <BarChartOutlined />,
-          label: '指标库',
-        },
-      ],
-    },
-    {
-      key: 'm2',
-      icon: <FileAddOutlined />,
-      label: 'M2 - 教学增效',
-      children: [
-        {
-          key: '/teacher/m2/ppt-generator',
+          key: '/teacher/pre-class/resource-matcher',
           icon: <FileTextOutlined />,
-          label: 'PPT生成器',
+          label: '资源精准匹配',
         },
         {
-          key: '/teacher/m2/homework-generator',
-          icon: <FormOutlined />,
-          label: '作业生成器',
+          key: '/teacher/pre-class/courseware-generator',
+          icon: <FileAddOutlined />,
+          label: '课件框架生成',
         },
         {
-          key: '/teacher/m2/learning-radar',
-          icon: <RadarChartOutlined />,
-          label: '学习力雷达',
+          key: '/teacher/pre-class/case-generator',
+          icon: <BulbOutlined />,
+          label: '情景案例生成',
+        },
+        {
+          key: '/teacher/pre-class/resource-library',
+          icon: <FolderOpenOutlined />,
+          label: '校本资源库',
         },
       ],
     },
     {
-      key: 'm3',
-      icon: <AppstoreOutlined />,
-      label: 'M3 - 组织赋能',
+      key: 'in-class',
+      icon: <AudioOutlined />,
+      label: '课中',
       children: [
         {
-          key: '/teacher/m3/school-dashboard',
-          icon: <DashboardOutlined />,
-          label: '校级看板',
-        },
-        {
-          key: '/teacher/m3/compliance',
-          icon: <SafetyOutlined />,
-          label: '合规审计',
-        },
-        {
-          key: '/teacher/m3/resources',
-          icon: <FolderOpenOutlined />,
-          label: '资源库',
+          key: '/teacher/in-class/classroom-analysis',
+          icon: <BarChartOutlined />,
+          label: '课堂记录与分析',
         },
       ],
     },
+    {
+      key: 'after-class',
+      icon: <FormOutlined />,
+      label: '课后',
+      children: [
+        {
+          key: '/teacher/after-class/learning-radar',
+          icon: <RadarChartOutlined />,
+          label: '四维学情雷达',
+        },
+      ],
+    },
+    // 暂时隐藏M1/M2/M3模块
+    // {
+    //   key: 'm1',
+    //   icon: <AppstoreOutlined />,
+    //   label: 'M1 - 数据闭环',
+    //   children: [
+    //     {
+    //       key: '/teacher/m1/recorder',
+    //       icon: <AudioOutlined />,
+    //       label: '课堂采集器',
+    //     },
+    //     {
+    //       key: '/teacher/m1/metrics',
+    //       icon: <BarChartOutlined />,
+    //       label: '指标库',
+    //     },
+    //   ],
+    // },
+    // {
+    //   key: 'm2',
+    //   icon: <FileAddOutlined />,
+    //   label: 'M2 - 教学增效',
+    //   children: [
+    //     {
+    //       key: '/teacher/m2/ppt-generator',
+    //       icon: <FileTextOutlined />,
+    //       label: 'PPT生成器',
+    //     },
+    //     {
+    //       key: '/teacher/m2/homework-generator',
+    //       icon: <FormOutlined />,
+    //       label: '作业生成器',
+    //     },
+    //     {
+    //       key: '/teacher/m2/learning-radar',
+    //       icon: <RadarChartOutlined />,
+    //       label: '学习力雷达',
+    //     },
+    //   ],
+    // },
+    // {
+    //   key: 'm3',
+    //   icon: <AppstoreOutlined />,
+    //   label: 'M3 - 组织赋能',
+    //   children: [
+    //     {
+    //       key: '/teacher/m3/school-dashboard',
+    //       icon: <DashboardOutlined />,
+    //       label: '校级看板',
+    //     },
+    //     {
+    //       key: '/teacher/m3/compliance',
+    //       icon: <SafetyOutlined />,
+    //       label: '合规审计',
+    //     },
+    //     {
+    //       key: '/teacher/m3/resources',
+    //       icon: <FolderOpenOutlined />,
+    //       label: '资源库',
+    //     },
+    //   ],
+    // },
   ];
 
   // 用户菜单
@@ -189,7 +243,7 @@ const MainLayout = () => {
         <Menu
           mode="inline"
           selectedKeys={getSelectedKeys()}
-          defaultOpenKeys={['m1', 'm2', 'm3']}
+          defaultOpenKeys={['pre-class', 'in-class', 'after-class']}
           items={menuItems}
           onClick={handleMenuClick}
           style={{ borderRight: 0, paddingTop: 8 }}
@@ -216,6 +270,9 @@ const MainLayout = () => {
         >
           <div style={{ fontSize: 16, fontWeight: 500, color: '#1890ff' }}>
             {location.pathname === '/teacher/dashboard' && '工作台'}
+            {location.pathname.startsWith('/teacher/pre-class') && '课前 - 智能备课与导入'}
+            {location.pathname.startsWith('/teacher/in-class') && '课中 - 课堂记录与分析'}
+            {location.pathname.startsWith('/teacher/after-class') && '课后 - 精准练习与学情分析'}
             {location.pathname.startsWith('/teacher/m1') && 'M1 - 数据闭环阶段'}
             {location.pathname.startsWith('/teacher/m2') && 'M2 - 教学增效阶段'}
             {location.pathname.startsWith('/teacher/m3') && 'M3 - 组织赋能阶段'}

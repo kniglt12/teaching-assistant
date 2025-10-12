@@ -1,49 +1,29 @@
-import { Row, Col, Card, Statistic, Progress, Timeline, Button, Space, Table, Tag } from 'antd';
+import { Row, Col, Card, Statistic, Timeline, Button, Space } from 'antd';
 import {
-  ArrowUpOutlined,
-  ArrowDownOutlined,
+  BookOutlined,
   AudioOutlined,
+  RadarChartOutlined,
   FileTextOutlined,
-  FormOutlined,
+  BulbOutlined,
+  FolderOpenOutlined,
+  BarChartOutlined,
   CheckCircleOutlined,
   ClockCircleOutlined,
-  EyeOutlined,
-  BarChartOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { request } from '@/services/api';
 import ReactECharts from 'echarts-for-react';
-import { ClassSession, SessionStatus } from '@/types/shared';
 import './Dashboard.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  // 获取统计数据
-  const { data: _stats } = useQuery('dashboardStats', async () => {
-    const response = await request.get('/dashboard/stats');
-    return response.data;
-  });
-
-  // 获取最近的录音会话
-  const { data: recentSessions, isLoading: sessionsLoading } = useQuery(
-    'recentSessions',
-    async () => {
-      const response = await request.get('/collection/sessions', {
-        params: { page: 1, limit: 5, sortBy: 'startTime', sortOrder: 'desc' },
-      });
-      return response.data?.sessions || [];
-    }
-  );
-
-  // 趋势图配置
+  // 本周使用趋势图
   const trendChartOption = {
     tooltip: {
       trigger: 'axis',
     },
     legend: {
-      data: ['课堂数', '生成内容', '报告数'],
+      data: ['课前备课', '课中记录', '课后分析'],
     },
     grid: {
       left: '3%',
@@ -61,165 +41,39 @@ const Dashboard = () => {
     },
     series: [
       {
-        name: '课堂数',
+        name: '课前备课',
         type: 'line',
-        data: [12, 15, 10, 18, 22, 8, 5],
+        data: [8, 12, 10, 14, 18, 6, 4],
         smooth: true,
         itemStyle: { color: '#1890ff' },
+        areaStyle: { color: 'rgba(24, 144, 255, 0.2)' },
       },
       {
-        name: '生成内容',
+        name: '课中记录',
         type: 'line',
-        data: [8, 12, 14, 15, 18, 6, 4],
+        data: [5, 8, 7, 9, 11, 4, 3],
         smooth: true,
         itemStyle: { color: '#52c41a' },
+        areaStyle: { color: 'rgba(82, 196, 26, 0.2)' },
       },
       {
-        name: '报告数',
+        name: '课后分析',
         type: 'line',
-        data: [10, 13, 11, 16, 20, 7, 5],
+        data: [6, 9, 8, 10, 13, 5, 4],
         smooth: true,
         itemStyle: { color: '#faad14' },
+        areaStyle: { color: 'rgba(250, 173, 20, 0.2)' },
       },
     ],
   };
 
-  // 格式化时长
-  const formatDuration = (seconds: number): string => {
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    if (hrs > 0) return `${hrs}小时${mins}分钟`;
-    if (mins > 0) return `${mins}分钟${secs}秒`;
-    return `${secs}秒`;
-  };
-
-  // 获取状态标签
-  const getStatusTag = (status: SessionStatus) => {
-    switch (status) {
-      case SessionStatus.RECORDING:
-        return <Tag color="processing">录制中</Tag>;
-      case SessionStatus.PROCESSING:
-        return <Tag color="processing">处理中</Tag>;
-      case SessionStatus.COMPLETED:
-        return <Tag color="success">已完成</Tag>;
-      case SessionStatus.FAILED:
-        return <Tag color="error">失败</Tag>;
-      default:
-        return <Tag>{status}</Tag>;
-    }
-  };
-
-  // 表格列定义
-  const columns = [
-    {
-      title: '课程名称',
-      dataIndex: 'courseName',
-      key: 'courseName',
-      width: 150,
-    },
-    {
-      title: '班级',
-      dataIndex: 'className',
-      key: 'className',
-      width: 120,
-    },
-    {
-      title: '科目',
-      dataIndex: 'subject',
-      key: 'subject',
-      width: 80,
-    },
-    {
-      title: '时长',
-      dataIndex: 'duration',
-      key: 'duration',
-      width: 100,
-      render: (duration: number) => duration ? formatDuration(duration) : '-',
-    },
-    {
-      title: '开始时间',
-      dataIndex: 'startTime',
-      key: 'startTime',
-      width: 160,
-      render: (time: Date) => new Date(time).toLocaleString('zh-CN', {
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
-    },
-    {
-      title: '状态',
-      dataIndex: 'status',
-      key: 'status',
-      width: 100,
-      render: (status: SessionStatus) => getStatusTag(status),
-    },
-    {
-      title: '操作',
-      key: 'action',
-      width: 180,
-      render: (_: any, record: ClassSession) => (
-        <Space size="small">
-          <Button
-            type="link"
-            size="small"
-            icon={<EyeOutlined />}
-            onClick={() => navigate(`/m1/transcript/${record.id}`)}
-          >
-            查看文字稿
-          </Button>
-          <Button
-            type="link"
-            size="small"
-            icon={<BarChartOutlined />}
-            onClick={() => navigate(`/m1/report/${record.id}`)}
-          >
-            报告
-          </Button>
-        </Space>
-      ),
-    },
-  ];
-
-  // 功能分布饼图
-  const featureChartOption = {
-    tooltip: {
-      trigger: 'item',
-    },
-    legend: {
-      orient: 'vertical',
-      left: 'left',
-    },
-    series: [
-      {
-        name: '使用频次',
-        type: 'pie',
-        radius: '60%',
-        data: [
-          { value: 45, name: '课堂采集' },
-          { value: 30, name: 'PPT生成' },
-          { value: 25, name: '作业生成' },
-          { value: 20, name: '数据看板' },
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
-          },
-        },
-      },
-    ],
-  };
 
   return (
     <div className="page-container dashboard">
       {/* 欢迎区域 */}
       <div className="page-header">
-        <h1 className="page-title">工作台</h1>
-        <p className="page-description">欢迎回来，查看您的教学数据概览</p>
+        <h1 className="page-title">道德与法治智能教学工作台</h1>
+        <p className="page-description">欢迎回来,查看您的教学数据概览</p>
       </div>
 
       {/* 核心指标卡片 */}
@@ -227,14 +81,9 @@ const Dashboard = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card bordered={false} hoverable>
             <Statistic
-              title="本周课堂数"
-              value={28}
-              prefix={<AudioOutlined />}
-              suffix={
-                <span className="trend-up">
-                  <ArrowUpOutlined /> 12%
-                </span>
-              }
+              title="本周备课次数"
+              value={32}
+              prefix={<BookOutlined />}
               valueStyle={{ color: '#1890ff' }}
             />
           </Card>
@@ -243,14 +92,9 @@ const Dashboard = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card bordered={false} hoverable>
             <Statistic
-              title="生成内容数"
-              value={64}
-              prefix={<FileTextOutlined />}
-              suffix={
-                <span className="trend-up">
-                  <ArrowUpOutlined /> 8%
-                </span>
-              }
+              title="课堂记录数"
+              value={18}
+              prefix={<AudioOutlined />}
               valueStyle={{ color: '#52c41a' }}
             />
           </Card>
@@ -259,14 +103,9 @@ const Dashboard = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card bordered={false} hoverable>
             <Statistic
-              title="班级报告数"
-              value={18}
-              prefix={<FormOutlined />}
-              suffix={
-                <span className="trend-down">
-                  <ArrowDownOutlined /> 3%
-                </span>
-              }
+              title="学情分析数"
+              value={24}
+              prefix={<RadarChartOutlined />}
               valueStyle={{ color: '#faad14' }}
             />
           </Card>
@@ -275,27 +114,20 @@ const Dashboard = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card bordered={false} hoverable>
             <Statistic
-              title="平均教学效能"
-              value={87.5}
-              suffix="%"
+              title="资源库素材"
+              value={156}
+              prefix={<FolderOpenOutlined />}
               valueStyle={{ color: '#722ed1' }}
             />
-            <Progress percent={87.5} showInfo={false} strokeColor="#722ed1" />
           </Card>
         </Col>
       </Row>
 
       {/* 图表区域 */}
       <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
-        <Col xs={24} lg={16}>
+        <Col xs={24}>
           <Card title="本周使用趋势" bordered={false}>
             <ReactECharts option={trendChartOption} style={{ height: 300 }} />
-          </Card>
-        </Col>
-
-        <Col xs={24} lg={8}>
-          <Card title="功能使用分布" bordered={false}>
-            <ReactECharts option={featureChartOption} style={{ height: 300 }} />
           </Card>
         </Col>
       </Row>
@@ -309,26 +141,34 @@ const Dashboard = () => {
                 type="primary"
                 size="large"
                 block
-                icon={<AudioOutlined />}
-                onClick={() => navigate('/m1/recorder')}
-              >
-                开始课堂采集
-              </Button>
-              <Button
-                size="large"
-                block
                 icon={<FileTextOutlined />}
-                onClick={() => navigate('/m2/ppt-generator')}
+                onClick={() => navigate('/teacher/pre-class/resource-matcher')}
               >
-                生成PPT教案
+                资源精准匹配
               </Button>
               <Button
                 size="large"
                 block
-                icon={<FormOutlined />}
-                onClick={() => navigate('/m2/homework-generator')}
+                icon={<BulbOutlined />}
+                onClick={() => navigate('/teacher/pre-class/case-generator')}
               >
-                生成差异化作业
+                生成情景案例
+              </Button>
+              <Button
+                size="large"
+                block
+                icon={<BarChartOutlined />}
+                onClick={() => navigate('/teacher/in-class/classroom-analysis')}
+              >
+                课堂记录分析
+              </Button>
+              <Button
+                size="large"
+                block
+                icon={<RadarChartOutlined />}
+                onClick={() => navigate('/teacher/after-class/learning-radar')}
+              >
+                查看学情雷达
               </Button>
             </Space>
           </Card>
@@ -342,9 +182,9 @@ const Dashboard = () => {
                   dot: <CheckCircleOutlined style={{ color: '#52c41a' }} />,
                   children: (
                     <>
-                      <p className="timeline-title">完成课堂采集</p>
-                      <p className="timeline-desc">高一（3）班 - 语文</p>
-                      <p className="timeline-time">2小时前</p>
+                      <p className="timeline-title">生成情景案例</p>
+                      <p className="timeline-desc">主题：公民的基本权利与义务</p>
+                      <p className="timeline-time">1小时前</p>
                     </>
                   ),
                 },
@@ -352,18 +192,18 @@ const Dashboard = () => {
                   dot: <FileTextOutlined style={{ color: '#1890ff' }} />,
                   children: (
                     <>
-                      <p className="timeline-title">生成PPT教案</p>
-                      <p className="timeline-desc">主题：《红楼梦》人物分析</p>
-                      <p className="timeline-time">5小时前</p>
+                      <p className="timeline-title">生成课件框架</p>
+                      <p className="timeline-desc">八年级下册 第一单元</p>
+                      <p className="timeline-time">3小时前</p>
                     </>
                   ),
                 },
                 {
-                  dot: <FormOutlined style={{ color: '#faad14' }} />,
+                  dot: <BarChartOutlined style={{ color: '#faad14' }} />,
                   children: (
                     <>
-                      <p className="timeline-title">生成作业题集</p>
-                      <p className="timeline-desc">三层难度共30道题</p>
+                      <p className="timeline-title">完成课堂分析</p>
+                      <p className="timeline-desc">八年级(3)班 学生参与度分析</p>
                       <p className="timeline-time">昨天</p>
                     </>
                   ),
@@ -372,8 +212,8 @@ const Dashboard = () => {
                   dot: <ClockCircleOutlined style={{ color: '#8c8c8c' }} />,
                   children: (
                     <>
-                      <p className="timeline-title">查看学习力雷达</p>
-                      <p className="timeline-desc">高一（3）班整体分析</p>
+                      <p className="timeline-title">查看学情雷达</p>
+                      <p className="timeline-desc">八年级(3)班 四维能力分析</p>
                       <p className="timeline-time">2天前</p>
                     </>
                   ),
@@ -384,80 +224,76 @@ const Dashboard = () => {
         </Col>
       </Row>
 
-      {/* 最近的录音记录 */}
+      {/* 教学模块卡片 */}
       <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
         <Col xs={24}>
-          <Card
-            title="最近的录音记录"
-            bordered={false}
-            extra={
-              <Button type="link" onClick={() => navigate('/m1/sessions')}>
-                查看全部
-              </Button>
-            }
-          >
-            <Table
-              columns={columns}
-              dataSource={recentSessions}
-              loading={sessionsLoading}
-              rowKey="id"
-              pagination={false}
-              size="middle"
-            />
-          </Card>
-        </Col>
-      </Row>
-
-      {/* M1/M2/M3 阶段进度 */}
-      <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
-        <Col xs={24}>
-          <Card title="系统能力阶段" bordered={false}>
+          <Card title="道德与法治教学全流程" bordered={false}>
             <Row gutter={[16, 16]}>
               <Col xs={24} md={8}>
-                <div className="stage-card">
+                <div className="stage-card" onClick={() => navigate('/teacher/pre-class/resource-matcher')} style={{ cursor: 'pointer' }}>
                   <div className="stage-header">
-                    <h3>M1 - 数据闭环</h3>
-                    <span className="stage-status completed">已上线</span>
+                    <BookOutlined style={{ fontSize: 32, color: '#1890ff', marginBottom: 16 }} />
+                    <h3>课前 - 智能备课</h3>
                   </div>
-                  <Progress percent={100} status="success" />
                   <ul className="stage-features">
-                    <li>✓ 课堂采集器</li>
-                    <li>✓ 指标库 V1</li>
-                    <li>✓ 基础报告生成</li>
+                    <li>✓ 资源精准匹配</li>
+                    <li>✓ 课件框架生成</li>
+                    <li>✓ 情景案例生成</li>
+                    <li>✓ 校本资源库</li>
                   </ul>
                 </div>
               </Col>
 
               <Col xs={24} md={8}>
-                <div className="stage-card">
+                <div className="stage-card" onClick={() => navigate('/teacher/in-class/classroom-analysis')} style={{ cursor: 'pointer' }}>
                   <div className="stage-header">
-                    <h3>M2 - 教学增效</h3>
-                    <span className="stage-status active">进行中</span>
+                    <AudioOutlined style={{ fontSize: 32, color: '#52c41a', marginBottom: 16 }} />
+                    <h3>课中 - 课堂记录</h3>
                   </div>
-                  <Progress percent={75} status="active" />
                   <ul className="stage-features">
-                    <li>✓ PPT生成器</li>
-                    <li>✓ 作业生成器</li>
-                    <li>⏳ 学习力雷达优化中</li>
+                    <li>✓ 无感记录课堂</li>
+                    <li>✓ 学生参与度分析</li>
+                    <li>✓ 思维层级评估</li>
+                    <li>✓ 互动热区识别</li>
                   </ul>
                 </div>
               </Col>
 
               <Col xs={24} md={8}>
-                <div className="stage-card">
+                <div className="stage-card" onClick={() => navigate('/teacher/after-class/learning-radar')} style={{ cursor: 'pointer' }}>
                   <div className="stage-header">
-                    <h3>M3 - 组织赋能</h3>
-                    <span className="stage-status pending">规划中</span>
+                    <RadarChartOutlined style={{ fontSize: 32, color: '#faad14', marginBottom: 16 }} />
+                    <h3>课后 - 学情分析</h3>
                   </div>
-                  <Progress percent={30} />
                   <ul className="stage-features">
-                    <li>⏳ 校级看板</li>
-                    <li>⏳ 合规审计</li>
-                    <li>⏳ 资源库建设</li>
+                    <li>✓ 认知理解力</li>
+                    <li>✓ 思维表达力</li>
+                    <li>✓ 应用迁移力</li>
+                    <li>✓ 学习投入度</li>
                   </ul>
                 </div>
               </Col>
             </Row>
+          </Card>
+        </Col>
+      </Row>
+
+      {/* 系统特色 */}
+      <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
+        <Col xs={24}>
+          <Card
+            bordered={false}
+            style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: 'white'
+            }}
+          >
+            <div style={{ textAlign: 'center', padding: '20px 0' }}>
+              <h2 style={{ color: 'white', marginBottom: 16 }}>道德与法治学科专属</h2>
+              <p style={{ fontSize: 16, color: 'rgba(255, 255, 255, 0.9)', marginBottom: 0 }}>
+                整合权威案例库、学段目标与教学规范，为情境化教学、价值观引导、思维能力培养提供精准支持
+              </p>
+            </div>
           </Card>
         </Col>
       </Row>
