@@ -20,6 +20,7 @@ import ResourceMatcher from './pages/PreClass/ResourceMatcher';
 import CoursewareGenerator from './pages/PreClass/CoursewareGenerator';
 import CaseGenerator from './pages/PreClass/CaseGenerator';
 import PreClassResourceLibrary from './pages/PreClass/ResourceLibrary';
+import ClassroomAgent from './pages/PreClass/ClassroomAgent';
 
 // 课中页面
 import ClassroomAnalysis from './pages/InClass/ClassroomAnalysis';
@@ -90,6 +91,7 @@ function App() {
           <Route path="courseware-generator" element={<CoursewareGenerator />} />
           <Route path="case-generator" element={<CaseGenerator />} />
           <Route path="resource-library" element={<PreClassResourceLibrary />} />
+          <Route path="classroom-agent" element={<ClassroomAgent />} />
         </Route>
 
         {/* 课中模块 */}

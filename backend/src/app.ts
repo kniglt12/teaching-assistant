@@ -15,6 +15,7 @@ import analysisRoutes from './modules/analysis/analysis.routes';
 import generationRoutes from './modules/generation/generation.routes';
 import dashboardRoutes from './modules/dashboard/dashboard.routes';
 import authRoutes from './common/auth/auth.routes';
+import agentRoutes from './modules/agent/agent.routes';
 
 // 导入中间件
 import { errorHandler } from './common/middleware/error.middleware';
@@ -130,6 +131,7 @@ class App {
     this.app.use('/api/analysis', authMiddleware, analysisRoutes);
     this.app.use('/api/generation', authMiddleware, generationRoutes);
     this.app.use('/api/dashboard', authMiddleware, dashboardRoutes);
+    this.app.use('/api/agent', authMiddleware, agentRoutes);
 
     // 404处理
     this.app.use((req: Request, res: Response) => {

@@ -17,6 +17,7 @@ import {
   BellOutlined,
   BookOutlined,
   BulbOutlined,
+  RobotOutlined,
 } from '@ant-design/icons';
 import { useAuthStore } from '@/store/authStore';
 
@@ -59,6 +60,11 @@ const MainLayout = () => {
           key: '/teacher/pre-class/resource-library',
           icon: <FolderOpenOutlined />,
           label: '校本资源库',
+        },
+        {
+          key: '/teacher/pre-class/classroom-agent',
+          icon: <RobotOutlined />,
+          label: '课堂助手',
         },
       ],
     },
