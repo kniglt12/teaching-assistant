@@ -11,18 +11,11 @@ const PortalSelection = () => {
       id: 'teacher',
       name: '教师端',
       icon: (
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="60" cy="60" r="55" fill="#1890ff" opacity="0.1"/>
-          {/* 头部 */}
-          <circle cx="60" cy="45" r="15" fill="#1890ff"/>
-          {/* 身体 */}
-          <path d="M35 85 C35 70, 45 65, 60 65 C75 65, 85 70, 85 85 L85 95 L35 95 Z" fill="#1890ff"/>
-          {/* 帽子 */}
-          <rect x="50" y="30" width="20" height="3" fill="#1890ff"/>
-          {/* 眼睛 */}
-          <circle cx="52" cy="45" r="2" fill="white"/>
-          <circle cx="68" cy="45" r="2" fill="white"/>
-        </svg>
+        <img
+          src={getAssetPath('teacher_logo.png')}
+          alt="教师端"
+          style={{ width: '100px', height: '120px', objectFit: 'contain' }}
+        />
       ),
       path: '/teacher/login'
     },
@@ -30,21 +23,11 @@ const PortalSelection = () => {
       id: 'school',
       name: '学校端',
       icon: (
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="60" cy="60" r="55" fill="#1890ff" opacity="0.1"/>
-          {/* 房子屋顶 */}
-          <path d="M60 30 L85 50 L35 50 Z" fill="#1890ff"/>
-          {/* 房子主体 */}
-          <rect x="35" y="50" width="50" height="35" fill="#1890ff"/>
-          {/* 门 */}
-          <rect x="50" y="60" width="20" height="25" fill="white" rx="2"/>
-          {/* 门把手 */}
-          <circle cx="64" cy="73" r="1.5" fill="#1890ff"/>
-          {/* 地板 */}
-          <rect x="30" y="85" width="60" height="8" fill="#40a9ff"/>
-          {/* 烟囱 */}
-          <rect x="70" y="35" width="6" height="15" fill="#40a9ff"/>
-        </svg>
+        <img
+          src={getAssetPath('school_logo.png')}
+          alt="学校端"
+          style={{ width: '120px', height: '120px', objectFit: 'contain' }}
+        />
       ),
       path: '/school/login'
     },
@@ -52,20 +35,11 @@ const PortalSelection = () => {
       id: 'district',
       name: '区域端',
       icon: (
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="60" cy="60" r="55" fill="#1890ff" opacity="0.1"/>
-          <circle cx="60" cy="60" r="35" fill="none" stroke="#1890ff" strokeWidth="3"/>
-          <circle cx="60" cy="60" r="25" fill="none" stroke="#1890ff" strokeWidth="2"/>
-          <circle cx="60" cy="60" r="5" fill="#1890ff"/>
-          <circle cx="60" cy="30" r="4" fill="#40a9ff"/>
-          <circle cx="60" cy="90" r="4" fill="#40a9ff"/>
-          <circle cx="30" cy="60" r="4" fill="#40a9ff"/>
-          <circle cx="90" cy="60" r="4" fill="#40a9ff"/>
-          <line x1="60" y1="60" x2="60" y2="30" stroke="#1890ff" strokeWidth="1.5"/>
-          <line x1="60" y1="60" x2="90" y2="60" stroke="#1890ff" strokeWidth="1.5"/>
-          <line x1="60" y1="60" x2="60" y2="90" stroke="#1890ff" strokeWidth="1.5"/>
-          <line x1="60" y1="60" x2="30" y2="60" stroke="#1890ff" strokeWidth="1.5"/>
-        </svg>
+        <img
+          src={getAssetPath('area_logo.png')}
+          alt="区域端"
+          style={{ width: '120px', height: '120px', objectFit: 'contain' }}
+        />
       ),
       path: '/district/login'
     }
