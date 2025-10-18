@@ -205,9 +205,10 @@
 }
 
 .portal-description {
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
   color: #1c4f82;
   margin-top: 1vh;
+  font-weight: 600;
 }
 
 .portal-cards {
