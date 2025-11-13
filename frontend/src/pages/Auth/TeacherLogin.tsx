@@ -16,13 +16,17 @@ const TeacherLogin = () => {
   const handleLogin = async (values: any) => {
     try {
       setLoading(true);
-      const response = await request.post('/auth/login', values);
+      // 模拟登录请求
+      await new Promise(resolve => setTimeout(resolve, 800));
+      message.success('登录成功');
+      navigate('/teacher/dashboard');
+      // const response = await request.post('/auth/login', values);
 
-      if (response.success && response.data) {
-        login(response.data.user, response.data.token);
-        message.success('登录成功');
-        navigate('/teacher/dashboard');
-      }
+      // if (response.success && response.data) {
+      //   login(response.data.user, response.data.token);
+      //   message.success('登录成功');
+      //   navigate('/teacher/dashboard');
+      // }
     } catch (error) {
       message.error('登录失败,请检查用户名和密码');
     } finally {
