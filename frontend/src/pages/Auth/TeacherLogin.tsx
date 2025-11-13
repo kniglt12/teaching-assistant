@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Card, message, Tabs } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, HomeOutlined, ArrowLeftOutlined } from '@ant-design/icons';
-import { useAuthStore } from '@/store/authStore';
+// import { useAuthStore } from '@/store/authStore';
 import { request } from '@/services/api';
 import { getAssetPath } from '@/utils/assets';
 import './Login.css';
