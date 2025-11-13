@@ -11,9 +11,9 @@ const TeacherLogin = () => {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('login');
   const navigate = useNavigate();
-  const { login } = useAuthStore();
+  // const { login } = useAuthStore();
 
-  const handleLogin = async (values: any) => {
+  const handleLogin = async (_values: any) => {
     try {
       setLoading(true);
       // 模拟登录请求
